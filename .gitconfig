@@ -1,0 +1,88 @@
+# [http]
+	# proxy = http://userName:password@proxyServer:port/
+	# sslVerify = false
+# [https]
+	# proxy = http://userName:password@proxyServer:port/
+	# sslVerify = false
+# [url "https://"]
+    # insteadOf = git://
+[user]
+	name = name
+	email = name@emailServerDomain.emailServerTLD
+[core]
+	excludesfile = C:\\Users\\user\\gitignore_global.txt
+	editor = subl # shell script https://github.com/Herman-Freund/windows-user-bin
+	autocrlf = true
+[color]
+	ui = true
+[alias]
+	#	config
+	cf		=	config
+	cfg		=	config --global
+
+	#	status
+	s		=	status
+
+	#	checkout
+	co		=	checkout
+	com		=	checkout master
+
+	#	pull
+	pl		=	pull
+
+	#	fetch
+	f		=	fetch
+
+	#	rebase
+	rb		=	rebase
+	rbi		=	rebase --interactive
+
+	#	add
+	a		=	add
+
+	#	commit
+	cm		=	commit
+	cme		=	commit --allow-empty
+	cman	=	commit --amend --no-edit
+
+	#	push
+	p		=	push
+	po		=	push origin
+	poh		=	push origin HEAD
+	pohfwl	=	push origin HEAD --force-with-lease
+
+	#	reset
+	r		=	reset
+	rh		=	reset --hard
+
+	#	branch
+	b		=	branch
+
+	#	stash
+	st		=	stash
+	stp		=	stash pop
+	stl		=	stash list
+	sta		=	stash apply
+	sts		=	stash save
+	std		=	stash drop
+	stsh 	= "!f() { git stash show stash^{/$*} -p; }; f"
+	stap 	= "!f() { git stash apply stash^{/$*}; }; f"
+
+	#	diff
+	d		=	diff
+	dw		=	diff --color-words
+	dw1		=	diff --color-words="[A-Za-z0-9_]+|[^A-Za-z0-9_]"
+	dws		=	diff --color-words --staged
+	dw1s	=	diff --color-words="[A-Za-z0-9_]+|[^A-Za-z0-9_]" --staged
+
+	#	log/info
+	l		=	log
+	logd	=	log --oneline --graph --decorate
+	lc		=	log --pretty=format:'------------------------------------------------%x1B[100D%x1B[25C %x08 %C(bold)%<(81,trunc)%s%n%x1B[100D%x1B[25C %Creset%C(yellow)%<(8)%h %C(red bold)%<(9)%an %Creset%>(25)%ad %Cresetset%>(25)%ad %Creset %C(cyan bold)%<(9)%cn %Creset%>(25)%cd%Creset%C(bold yellow)%d %Creset' --graph --date=local
+	cb		=	! git symbolic-ref -q --short HEAD || git rev-parse --short HEAD
+	sl		=	! git reflog @{0} --pretty=%H | git log --stdin --pretty='%H %P' | egrep \"[a-f0-9]{40} .*$(git rev-parse HEAD~)\" | cut -c -40 | git log --stdin ^master --pretty='%C(yellow)%h %C(red bold)%cd %C(cyan bold)%cr %Creset %s'
+	last	=	log -1 HEAD
+[pull]
+	rebase = true
+[credential]
+	helper = wincred
